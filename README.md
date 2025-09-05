@@ -2,7 +2,7 @@
 ## Purpose: Boba milk tea shop webpage
 This is a homepage of a boba milk shop "Boba"
 ## Structure of HTML and CSS:
-1. Head: link to eacy section of home page and new webpage of menu
+1. Head: link to each section of home page and new webpage of menu
    
 2. Boba intro : image with our shop mission, sering great boba.<br>
 CSS style: padding / grid with flex<br>
