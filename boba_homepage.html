@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Boba — Crafted milk tea, made fresh daily." />
+  <title>Boba • Crafted Milk Tea</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon-256.png" sizes="256x256">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+</head>
+<body>
+  <div id="header">
+    <h1>Boba</h1>
+      <nav>
+      <a href="#story">Origin</a>
+      <a href="#special">What’s Special</a>
+      <a href="menu.html">Menu & Prices</a>
+      <a href="#visit">Location</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h1>Small-batch boba, brewed fresh.</h1>
+          <p>Welcome to <strong>Boba</strong> — your neighborhood milk tea shop. We slow-brew premium teas, shake each cup to order, and cook chewy tapioca pearls throughout the day for perfect texture every time.</p>
+          <div class="btns">
+            <a class="cta" href="tel:+16025551234">Call to Order</a>
+            <a class="btn-outline" href="menu.html">See Prices</a>
+            <a class="btn-outline" href="#visit">Get Directions</a>
+          </div>
+        </div>
+        <div class="cup-card">
+          <img src="A_digital_photograph_showcases_a_plastic_cup_fille.png" height="400" width="350" alt="House-made boba milk tea with glossy tapioca pearls" />
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="container">
+        <h2 class="section-title">Origin</h2>
+        <p class="section-lead">Boba (aka bubble tea) began in Taiwan in the late 1980s, when creamy milk tea met springy tapioca pearls. The combo traveled the world and became a cozy, customizable classic.</p>
+        <p>At <strong>Boba</strong>, we honor those roots with high-mountain teas and time-tested methods. Our pearls are cooked in small batches for a caramel-soft chew, then married with fresh-brewed tea and your choice of milk and sweetness.</p>
+      </div>
+    </section>
+
+    <section id="special">
+      <div class="container">
+        <h2 class="section-title">What makes us special</h2>
+        <p class="section-lead">Quality leaves. Real ingredients. Made-to-order freshness.</p>
+        <div class="features" role="list">
+          <div class="feature" role="listitem"><i aria-hidden="true">🍃</i><div><strong>Premium tea, slow-brewed</strong><p class="section-lead">Oolong, jasmine, and Assam brewed in precise small batches for layered flavor.</p></div></div>
+          <div class="feature" role="listitem"><i aria-hidden="true">🧋</i><div><strong>Fresh pearls all day</strong><p class="section-lead">Tapioca cooked every few hours for that warm, cloud-soft chew.</p></div></div>
+          <div class="feature" role="listitem"><i aria-hidden="true">🌱</i><div><strong>Real ingredients</strong><p class="section-lead">House syrups, real fruit, and dairy-free options like oat and almond milk.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit">
+      <div class="container">
+        <h2 class="section-title">Visit & Contact</h2>
+        <div class="location">
+          <div class="card">
+            <p><strong>Address</strong><br/>123 Pearl Ave, Phoenix, AZ 85004</p>
+            <p><strong>Phone (Order)</strong><br/><a href="tel:+16025551234">(602) 555-1234</a></p>
+            <p><a class="cta" href="https://www.google.com/maps/search/?api=1&query=123+Pearl+Ave+Phoenix+AZ+85004" target="_blank" rel="noopener">Open in Maps</a></p>
+          </div>
+          <div class="card" aria-labelledby="hours-title">
+            <h3 id="hours-title" class="hours-title">Hours</h3>
+            <ul class="hours">
+              <li><span>Mon</span><span>11:00a – 9:00p</span></li>
+              <li><span>Tue</span><span>11:00a – 9:00p</span></li>
+              <li><span>Wed</span><span>11:00a – 9:00p</span></li>
+              <li><span>Thu</span><span>11:00a – 9:00p</span></li>
+              <li><span>Fri</span><span>11:00a – 10:00p</span></li>
+              <li><span>Sat</span><span>11:00a – 10:00p</span></li>
+              <li><span>Sun</span><span>12:00p – 8:00p</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  
+
+  <script>
+    async function loadPart(id, file) {
+      const el = document.getElementById(id);
+      const res = await fetch(file);
+      el.innerHTML = await res.text();
+    }
+    function setActiveNav() {
+      const path = location.pathname.split('/').pop() || 'boba_homepage_clean.html';
+      const nav = document.querySelector('header nav');
+      if (!nav) return;
+      const links = nav.querySelectorAll('a');
+      links.forEach(a => {
+        const href = a.getAttribute('href');
+        // Normalize anchors that point to homepage sections
+        const isHomeAnchor = href && href.startsWith('boba_homepage_clean.html#');
+        const isHomeLink = href === 'boba_homepage_clean.html' || href === '#' || (href && href.startsWith('#'));
+        const isMenu = href === 'menu.html';
+        a.removeAttribute('aria-current');
+        a.classList.remove('active');
+        if ((path === 'menu.html' && isMenu) ||
+            (path === 'boba_homepage_clean.html' && (isHomeLink || isHomeAnchor)) ||
+            (path === '' && (isHomeLink || isHomeAnchor))) {
+          a.setAttribute('aria-current', 'page');
+          a.classList.add('active');
+        }
+      });
+    }
+    (async () => {
+      await loadPart('header', 'header.html');
+      await loadPart('footer', 'footer.html');
+      setActiveNav();
+    })();
+  </script>
+
+</body>
+</html>

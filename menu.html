@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boba • Menu & Prices</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon-256.png" sizes="256x256">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+</head>
+<body>
+  <div id="header"></div>
+
+  <main id="menu">
+    <section>
+      <div class="container">
+        <h2 class="section-title">Menu & Prices</h2>
+        <p class="section-lead">16 oz standard • 24 oz +$1 • Sweetness: 0%, 25%, 50%, 75%, 100%</p>
+        <div class="menu-grid">
+          <div class="item"><div><strong>Classic Milk Tea</strong><br><span class="badge">Assam / Black</span></div><div>$4.50</div></div>
+          <div class="item"><div><strong>Brown Sugar Boba Latte</strong><br><span class="badge">House syrup</span></div><div>$5.50</div></div>
+          <div class="item"><div><strong>Matcha Latte</strong><br><span class="badge">Ceremonial blend</span></div><div>$5.25</div></div>
+          <div class="item"><div><strong>Taro Milk Tea</strong><br><span class="badge">Creamy & nutty</span></div><div>$4.95</div></div>
+          <div class="item"><div><strong>Jasmine Green Milk Tea</strong><br><span class="badge">Floral & bright</span></div><div>$4.75</div></div>
+          <div class="item"><div><strong>Fresh Fruit Tea</strong><br><span class="badge">Seasonal</span></div><div>$4.25</div></div>
+          <div class="item"><div><strong>Thai Milk Tea</strong><br><span class="badge">Spiced</span></div><div>$4.95</div></div>
+          <div class="item"><div><strong>Honey Oolong Tea</strong><br><span class="badge">Golden & toasty</span></div><div>$4.65</div></div>
+        </div>
+        <p class="section-lead"><strong>Add-ons:</strong> Boba +$0.75 • Grass Jelly +$0.75 • Pudding +$0.75 • Oat/Almond Milk +$0.75</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  
+
+  <script>
+    async function loadPart(id, file) {
+      const el = document.getElementById(id);
+      const res = await fetch(file);
+      el.innerHTML = await res.text();
+    }
+    function setActiveNav() {
+      const path = location.pathname.split('/').pop() || 'boba_homepage_clean.html';
+      const nav = document.querySelector('header nav');
+      if (!nav) return;
+      const links = nav.querySelectorAll('a');
+      links.forEach(a => {
+        const href = a.getAttribute('href');
+        // Normalize anchors that point to homepage sections
+        const isHomeAnchor = href && href.startsWith('boba_homepage_clean.html#');
+        const isHomeLink = href === 'boba_homepage_clean.html' || href === '#' || (href && href.startsWith('#'));
+        const isMenu = href === 'menu.html';
+        a.removeAttribute('aria-current');
+        a.classList.remove('active');
+        if ((path === 'menu.html' && isMenu) ||
+            (path === 'boba_homepage_clean.html' && (isHomeLink || isHomeAnchor)) ||
+            (path === '' && (isHomeLink || isHomeAnchor))) {
+          a.setAttribute('aria-current', 'page');
+          a.classList.add('active');
+        }
+      });
+    }
+    (async () => {
+      await loadPart('header', 'header.html');
+      await loadPart('footer', 'footer.html');
+      setActiveNav();
+    })();
+  </script>
+
+</body>
+</html>
