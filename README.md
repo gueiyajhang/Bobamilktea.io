@@ -47,3 +47,11 @@ e.section: Footer<br><p>
 `
 # Construct simple web pages using HTML to create content and CSS to style it.
 URL: https://gueiyajhang.github.io/Bobamilktea.io/boba_homepage
+# Reference:
+Study.com. (Szymon Machajewski). What is an HTML document? – Structure, types & examples. In HTML & CSS Courses. Study.com. https://study.com/academy/lesson/what-is-an-html-document-structure-types-examples.html
+
+Study.com. (Sudha Aravindan). HTML5 document structure: Elements & examples. In HTML & CSS Courses. Study.com. https://study.com/academy/lesson/html5-document-structure-elements-examples.html
+
+Study.com. (Ioannis Kornarakis). The HTML5 canvas: Definition, purpose & examples. In HTML & CSS Courses. Study.com. https://study.com/academy/lesson/the-html-5-canvas-definition-purpose-examples.html
+
+Study.com. (Lonny Meinecke). What is CSS? In HTML & CSS Courses. Study.com. https://study.com/academy/lesson/what-is-css.html
